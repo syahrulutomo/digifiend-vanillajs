@@ -2,7 +2,6 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:500');
 @import url('https://fonts.googleapis.com/css?family=Arimo');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
-@import url(http://weloveiconfonts.com/api/?family=zocial);
 
 
 /*
@@ -565,27 +564,24 @@ footer .footer-logo{
 
 footer .social{
 	display: flex;
-	flex-wrap: wrap;
-	width: 130px;
+	width: 200px;
 	margin-right: auto;
 	margin-left: auto;
 	padding: 1.2em 0;
-	padding-left: 1em;
+	padding-left: 2.1em;
 	vertical-align: center;
 }
 
-footer .social a{
+footer .social img{
 	text-decoration: none;
 	color: white;
+	max-height: 50px;
 }
 
-[class^="zocial"]{
+[class^="zocial"] img{
 	width: calc(100%/3);
 }
 
-[class^="zocial"]:last-of-type{
-	margin-right: 0;
-}
 
 footer .etc{
 	font-family: 'Open sans', sans-serif;
