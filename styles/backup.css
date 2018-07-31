@@ -1,0 +1,50 @@
+.headnews1 img{
+	height: 70%;
+}
+
+.headnews2 {
+	height: 25%;
+}
+
+.headnews2 img{
+	height: 100%;
+}
+
+.headnews3 {
+	height: 25%;
+}
+
+.headnews3 img{
+	height: 100%;
+}
+
+#head-wrapper{
+	width: 90%;
+	height: 50%;
+	margin-top: 1.5em;
+	margin-bottom: 1.5em;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.headline{
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.headline img{
+	width: 100%;
+}
+
+.box{
+	width: 100%;
+}
+
+.headnews1{
+	width: 60%;
+}
+
+#headline2{
+	width: 30%;
+}
