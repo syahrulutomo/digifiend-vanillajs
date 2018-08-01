@@ -258,5 +258,3 @@ urlRecent4.then(function(response){
 	var data = json;
 	getData(data,6,recentLink4,recentThumbnailLink4,recentThumbnail4,recentTitle4,recentSummary4,recentAuthor4,recentDate4);
 })
-
-

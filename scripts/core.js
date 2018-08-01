@@ -19,6 +19,40 @@ main.addEventListener('click', function() {
  *	Retrieve data from API and do DOM to headline section 
  */
 
+var url = [
+			'https://newsapi.org/v2/everything?sources=ign&apiKey=6b0a8ee04320420cae2ba7e7e1d5c55d',
+			'https://newsapi.org/v2/everything?sources=polygon&apiKey=6b0a8ee04320420cae2ba7e7e1d5c55d',
+			'https://newsapi.org/v2/everything?sources=hacker-news&apiKey=6b0a8ee04320420cae2ba7e7e1d5c55d',
+			'https://newsapi.org/v2/everything?sources=the-next-web&apiKey=6b0a8ee04320420cae2ba7e7e1d5c55d',
+			'https://newsapi.org/v2/everything?sources=engadget&apiKey=6b0a8ee04320420cae2ba7e7e1d5c55d',
+			'https://newsapi.org/v2/everything?sources=techradar&apiKey=6b0a8ee04320420cae2ba7e7e1d5c55d'
+		  ]
+
+var dataIgn = new Array();
+var dataPolygon = new Array();
+var dataTechCrunh = new Array();
+var dataHackerNews = new Array();
+var dataRecode = new Array();
+var dataEngadget = new Array();
+var dataTechRadar = new Array();
+var dataTechCrunch = new Array();
+
+function retrieveData(url){
+	fetch(url).then(function(response){
+		return response.json();
+	})
+	.then(function(json){
+		var data = json;
+
+		for(var i = 0; i < data['articles'].length; i++){
+			var checkImg = data['articles'][i]['urlToImage'].slice(data['articles'][i]['urlToImage'].length-10,
+				data['articles'][i]['urlToImage'].length);
+		}
+
+	})
+
+}
+
 
 function getData(data,index,thumbnailLink,titleLink,thumbnail,title,summary,author,date){
 	
