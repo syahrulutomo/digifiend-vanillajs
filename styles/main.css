@@ -552,9 +552,14 @@ header{
 
 .recent-news-left{
 	width: 30%;
-	height: 25vh;
 	padding: 10px 0;
 }
+
+.recent-news-thumbnail{
+	height: 35vh;
+
+}
+
 
 .recent-news-summary , .recent-news-summary{
 	font-family: 'Open sans', sans-serif;
@@ -585,9 +590,10 @@ header{
 	color: inherit;
 	text-decoration: none;
 }
-	
+
 .recent-news-thumbnail , .highlights-thumbnail , .grid-thumbnail{
 	height: 22vh;
+	width: 100%;
 }
 
 

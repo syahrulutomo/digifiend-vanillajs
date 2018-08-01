@@ -194,7 +194,6 @@ var recentTitle1 = document.querySelector('#recent-news1').firstChild.nextSiblin
 var recentSummary1 = document.querySelector('#recent-news1').firstChild.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.nextSibling.nextSibling;
 var recentAuthor1 = document.querySelector('#recent-news1').firstChild.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.firstChild.nextSibling;
 var recentDate1 = document.querySelector('#recent-news1').firstChild.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.firstChild.nextSibling.nextSibling.nextSibling;	
-console.log(recentTitle1);
 
 var recentThumbnailLink2 = document.querySelector('#recent-news1').firstChild.nextSibling.firstChild.nextSibling;
 var recentLink2 = document.querySelector('#recent-news1').firstChild.nextSibling.nextSibling.nextSibling.firstChild.nextSibling;
@@ -205,7 +204,6 @@ var recentTitle2 = document.querySelector('#recent-news2').firstChild.nextSiblin
 var recentSummary2 = document.querySelector('#recent-news2').firstChild.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.nextSibling.nextSibling;
 var recentAuthor2 = document.querySelector('#recent-news2').firstChild.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.firstChild.nextSibling;
 var recentDate2 = document.querySelector('#recent-news2').firstChild.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.firstChild.nextSibling.nextSibling.nextSibling;	
-console.log(recentThumbnail2);
 
 var recentThumbnailLink3 = document.querySelector('#recent-news3').firstChild.nextSibling.firstChild.nextSibling;
 var recentLink3 = document.querySelector('#recent-news3').firstChild.nextSibling.nextSibling.nextSibling.firstChild.nextSibling;
