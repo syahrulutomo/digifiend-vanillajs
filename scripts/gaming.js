@@ -2,23 +2,27 @@
  * Gaming Page
  */ 
 
-var headlineGamingTitleLink = document.querySelector('.headline-gaming-title-link');
-var headlineGamingBannerLink = document.querySelector('.headline-gaming-banner-link');
-var headlineGamingBanner = document.querySelector('.headline-gaming-banner');
-var headlineGamingTitle = document.querySelector('.headline-gaming-title');
-var headlineGamingSummary = document.querySelector('.headline-gaming-summary');
-var headlineGamingAuthor = document.querySelector('.headline-gaming-content').lastChild.previousSibling.firstChild.nextSibling.firstChild.nextSibling;
-var headlineGamingDate = document.querySelector('.headline-gaming-content').lastChild.previousSibling.firstChild.nextSibling.firstChild.nextSibling.nextSibling.nextSibling;
-
-
-var urlHeadlineGaming = fetch('https://newsapi.org/v2/top-headlines?sources=polygon&apiKey=6b0a8ee04320420cae2ba7e7e1d5c55d');
-
-urlHeadlineGaming.then(function(response){
+fetch(API.getGameIgn).then(function(response){
 	return response.json();
 })
 .then(function(json){
-	var data = json;
-	getData(data,1,headlineGamingTitleLink,headlineGamingBannerLink,headlineGamingBanner,headlineGamingTitle,headlineGamingSummary,headlineGamingAuthor,headlineGamingDate);
+	displayData(json,0,'.headline-gaming');
+	displayData(json,1,'#recent-news-gaming2');
+	displayData(json,2,'#recent-news-gaming4');
+	displayData(json,3,'#recent-news-gaming6');
+	displayData(json,4,'#recent-news-gaming8');
+	displayData(json,5,'#recent-news-gaming10');
+	
+	fetch(API.getGamePolygon).then(function(response){
+		return response.json();
+	})
+	.then(function(json){
+		displayData(json,0,'#recent-news-gaming1');
+		displayData(json,1,'#recent-news-gaming3');
+		displayData(json,2,'#recent-news-gaming5');
+		displayData(json,3,'#recent-news-gaming7');
+		displayData(json,4,'#recent-news-gaming9');
+	});
 	
 });
 

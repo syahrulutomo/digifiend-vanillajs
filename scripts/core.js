@@ -19,43 +19,49 @@ main.addEventListener('click', function() {
  *	Retrieve data from API and do DOM to headline section 
  */
 
-var url = [
-			'https://newsapi.org/v2/everything?sources=ign&apiKey=6b0a8ee04320420cae2ba7e7e1d5c55d',
-			'https://newsapi.org/v2/everything?sources=polygon&apiKey=6b0a8ee04320420cae2ba7e7e1d5c55d',
-			'https://newsapi.org/v2/everything?sources=hacker-news&apiKey=6b0a8ee04320420cae2ba7e7e1d5c55d',
-			'https://newsapi.org/v2/everything?sources=the-next-web&apiKey=6b0a8ee04320420cae2ba7e7e1d5c55d',
-			'https://newsapi.org/v2/everything?sources=engadget&apiKey=6b0a8ee04320420cae2ba7e7e1d5c55d',
-			'https://newsapi.org/v2/everything?sources=techradar&apiKey=6b0a8ee04320420cae2ba7e7e1d5c55d'
-		  ]
-
-var dataIgn = new Array();
-var dataPolygon = new Array();
-var dataTechCrunh = new Array();
-var dataHackerNews = new Array();
-var dataRecode = new Array();
-var dataEngadget = new Array();
-var dataTechRadar = new Array();
-var dataTechCrunch = new Array();
-
-function retrieveData(url){
-	fetch(url).then(function(response){
-		return response.json();
-	})
-	.then(function(json){
-		var data = json;
-
-		for(var i = 0; i < data['articles'].length; i++){
-			var checkImg = data['articles'][i]['urlToImage'].slice(data['articles'][i]['urlToImage'].length-10,
-				data['articles'][i]['urlToImage'].length);
-		}
-
-	})
-
+var API = {
+	getHeadline: 'https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=6b0a8ee04320420cae2ba7e7e1d5c55d',
+	getGameIgn: 'https://newsapi.org/v2/top-headlines?sources=ign&apiKey=6b0a8ee04320420cae2ba7e7e1d5c55d',
+	getGamePolygon: 'https://newsapi.org/v2/top-headlines?sources=polygon&apiKey=6b0a8ee04320420cae2ba7e7e1d5c55d',
+	getDevHackNews: 'https://newsapi.org/v2/top-headlines?sources=hacker-news&apiKey=6b0a8ee04320420cae2ba7e7e1d5c55d',
+	getDevTheNextWeb: 'https://newsapi.org/v2/top-headlines?sources=the-next-web&apiKey=6b0a8ee04320420cae2ba7e7e1d5c55d',
+	getNewsEngadget: 'https://newsapi.org/v2/top-headlines?sources=engadget&apiKey=6b0a8ee04320420cae2ba7e7e1d5c55d',
+	getNewsTechRadar : 'https://newsapi.org/v2/top-headlines?sources=techradar&apiKey=6b0a8ee04320420cae2ba7e7e1d5c55d'
 }
 
+// var dataIgn = [];
 
-function getData(data,index,thumbnailLink,titleLink,thumbnail,title,summary,author,date){
+// function retrieveData(url,array){
+
+// 	fetch(url).then(function(response){
+// 		return response.json();
+// 	})
+// 	.then(function(data){
+// 		dataArray = data['articles'];
+// 		return dataArray;
+// 	})
+// 	.then(function(dataArray){
+// 		saveData(dataArray,array);
+// 	})
+// }
+
+// function saveData(json,array){
+// 	for(var i = 0; i < json.length; i++){
+// 		array.push(json[i]);
+// 	}
+// }
+
+
+function displayData(data,index,parent){
 	
+	var thumbnailLink = document.querySelector(parent).firstChild.nextSibling.firstChild.nextSibling;
+	var titleLink = document.querySelector(parent).firstChild.nextSibling.nextSibling.nextSibling.firstChild.nextSibling;
+	var thumbnail = document.querySelector(parent).firstChild.nextSibling.firstChild.nextSibling.firstChild;
+	var title = document.querySelector(parent).firstChild.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.firstChild;
+	var summary = document.querySelector(parent).firstChild.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.nextSibling.nextSibling;
+	var author = document.querySelector(parent).firstChild.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.firstChild.nextSibling;
+	var date = document.querySelector(parent).firstChild.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.firstChild.nextSibling.nextSibling.nextSibling;
+
 	for(var i = 0; i < 20; i++){
 		if(data['articles'][index]['urlToImage'] != null && data['articles'][index]['title'] != null ){
 
@@ -77,7 +83,24 @@ function getData(data,index,thumbnailLink,titleLink,thumbnail,title,summary,auth
 			var formattedDate = dateDay+' '+dateMonth+' '+dateYear;
 			date.textContent = formattedDate;
 		}else{
-			index = index + 1;
+			
+			thumbnailLink.href = data['articles'][index+1]['url'];
+			titleLink.href = data['articles'][index+1]['url'];
+			thumbnail.src = data['articles'][index+1]['urlToImage'];
+			title.textContent = data['articles'][index+1]['title'];
+			summary.textContent = data['articles'][index+1]['description'];
+			author.textContent = data['articles'][index+1]['source']['name'];
+			var date_temp = data['articles'][index+1]['publishedAt'];
+
+			date_temp = date_temp.slice(0,10);
+			var dateYear = date_temp.slice(0,4);
+			var dateMonth = date_temp.slice(5,7);
+			var dateDay = date_temp.slice(8);
+
+			dateMonth = formatMonth(dateMonth);
+
+			var formattedDate = dateDay+' '+dateMonth+' '+dateYear;
+			date.textContent = formattedDate;
 		}
 	
 	}
