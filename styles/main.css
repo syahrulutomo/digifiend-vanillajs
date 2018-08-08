@@ -219,6 +219,7 @@ header{
 
 .highlights-wrapper {
 	padding: 1em auto;
+	max-width: 100%;
 }
 
 .highlights-wrapper .highlights {
@@ -330,7 +331,8 @@ header{
 
 @media screen and (max-width: 800px){
 	.grid-wrapper {
-	padding: 1em auto;
+		padding: 1em auto;
+		max-width: 100%;
 	}
 
 	.grid-wrapper .grid {
@@ -534,6 +536,7 @@ header{
 	padding: 1em 0;
 	display: flex;
 	flex-wrap: wrap;
+	max-width: 100%;
 
 }
 
