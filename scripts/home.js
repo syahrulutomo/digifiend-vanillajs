@@ -46,7 +46,7 @@ fetch(API.getGameIgn).then(function(response){
 	displayData(json,1,'#recent-news2');
 });
 
-fetch(API.getNewsTechRadar).then(function(response){
+fetch(API.getNewsTechcrunch).then(function(response){
 	return response.json();
 })
 .then(function(json){

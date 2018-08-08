@@ -19,9 +19,11 @@ fetch(API.getDevHackNews).then(function(response){
 	.then(function(json){
 		displayData(json,0,'#recent-news-dev1');
 		displayData(json,1,'#recent-news-dev3');
-		displayData(json,3,'#recent-news-dev5');
-		displayData(json,5,'#recent-news-dev7');
-		displayData(json,7,'#recent-news-dev9');
+		displayData(json,2,'#recent-news-dev5');
+		displayData(json,3,'#recent-news-dev7');
+		displayData(json,4,'#recent-news-dev9');
 	});
 	
 });
+
+// addArticles('#dev-section','dev');

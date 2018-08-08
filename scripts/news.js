@@ -2,7 +2,7 @@
  * news Page
  */ 
 
-fetch(API.getGameIgn).then(function(response){
+fetch(API.getNewsEngadget).then(function(response){
 	return response.json();
 })
 .then(function(json){
@@ -11,9 +11,9 @@ fetch(API.getGameIgn).then(function(response){
 	displayData(json,2,'#recent-news-news4');
 	displayData(json,3,'#recent-news-news6');
 	displayData(json,4,'#recent-news-news8');
-	displayData(json,5,'#recent-news-news10');
+	displayData(json,4,'#recent-news-news10');
 	
-	fetch(API.getGamePolygon).then(function(response){
+	fetch(API.getNewsTechcrunch).then(function(response){
 		return response.json();
 	})
 	.then(function(json){
