@@ -160,7 +160,9 @@ function addArticles(parent,category){
 		left.setAttribute('class','recent-news-left');
 
 		var thumbLink = document.createElement('a');
-		thumbLink.setAttribute('class','recent-news-thumbnail-link')
+		thumbLink.setAttribute('class','recent-news-thumbnail-link');
+		thumbLink.setAttribute('href','')
+
 
 		var thumbnail = document.createElement('img');
 		thumbnail.setAttribute('class','recent-news-thumbnail');
@@ -181,8 +183,9 @@ function addArticles(parent,category){
 		right.setAttribute('class','recent-news-right');
 
 		var titleLink =  document.createElement('a');
-		titleLink.setAttribute('class','recent-news-content');
+		// titleLink.setAttribute('class','recent-news-content');
 		titleLink.setAttribute('class','recent-news-link');
+		titleLink.setAttribute('href','');
 
 		var title = document.createElement('h3');
 		title.setAttribute('class','recent-news-title');
@@ -210,39 +213,34 @@ function addArticles(parent,category){
 		article.appendChild(right);
 
 		parentElement.appendChild(article);
-		console.log(start);
-
-		
 
 	}
 
-	// if(category=='gaming'){
-			
-	// 		var index = start / 4;
+	if(category=='gaming'){
 
-	// 		fetch(API.getGamePolygon).then(function(response){
-	// 			return response.json();
-	// 		})
-	// 		.then(function(json){
-	// 			displayData(json,index,'#recent-news-gaming'+''+start+1);
-	// 			displayData(json,index+1,'#recent-news-gaming'+''+start+3);
-	// 			displayData(json,index+2,'#recent-news-gaming'+''+start+5);
-	// 			displayData(json,index+3,'#recent-news-gaming'+''+start+7);
-	// 			displayData(json,index+4,'#recent-news-gaming'+''+start+9);
+			fetch(API.getGamePolygon).then(function(response){
+				return response.json();
+			})
+			.then(function(json){
+				displayData(json,5,'#recent-news-gaming11');
+				displayData(json,6,'#recent-news-gaming13');
+				displayData(json,7,'#recent-news-gaming15');
+				displayData(json,8,'#recent-news-gaming17');
+				displayData(json,9,'#recent-news-gaming19');
 				
-	// 		fetch(API.getGameIgn).then(function(response){
-	// 			return response.json();
-	// 		})
-	// 		.then(function(json){
-	// 			displayData(json,index,'#recent-news-gaming'+''+start);
-	// 			displayData(json,index+1,'#recent-news-gaming'+''+start+2);
-	// 			displayData(json,index+2,'#recent-news-gaming'+''+start+4);
-	// 			displayData(json,index+3,'#recent-news-gaming'+''+start+6);
-	// 			displayData(json,index+4,'#recent-news-gaming'+''+start+8);
-	// 		});
+			fetch(API.getGameIgn).then(function(response){
+				return response.json();
+			})
+			.then(function(json){
+				displayData(json,index,'#recent-news-gaming12');
+				displayData(json,index+1,'#recent-news-gaming14');
+				displayData(json,index+2,'#recent-news-gaming16');
+				displayData(json,index+3,'#recent-news-gaming18');
+				displayData(json,index+4,'#recent-news-gaming20');
+			});
 				
-	// 		});
-	// 	}
+			});
+		}
 
   }
 }

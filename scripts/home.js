@@ -23,7 +23,7 @@ fetch(API.getHeadline).then(function(response){
 	displayData(json,6,'#grid3');
 	displayData(json,7,'#grid4');
 	displayData(json,10,'#grid5');
-	displayData(json,12,'#grid6');
+	displayData(json,13,'#grid6');
 	displayData(json,15,'#grid7');
 	displayData(json,17,'#grid8');
 	displayData(json,19,'#grid9');

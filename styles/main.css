@@ -461,10 +461,10 @@ header{
 		margin: 1em 1em;
 	}
 	#grid5{
-		margin-bottom: 0.5em;
+		margin-bottom: 1em;
 	}
 	#grid6{
-		margin-bottom: 0.5em;
+		margin-bottom: 1em;
 	}
 	#grid7{
 		margin-right: 1em;
@@ -491,11 +491,12 @@ header{
 		height: 50vh;
 	}
 	#grid5 .grid-thumbnail{
-		height: 65vh;
+		min-height: 80vh;
+		max-height: 80vh;
 	}
 	#grid6 .grid-thumbnail{
-		height: 50vh;
-		max-height: 60vh;
+		min-height: 80vh;
+		max-height: 80vh;
 	}
 	#grid7 .grid-thumbnail{
 		height: 40vh;
@@ -518,14 +519,6 @@ header{
 	
 	#container2{
 		width: 45%;
-	}
-
-	#container2 .five{
-		height: 100%;
-	}
-
-	#container2 .six{
-		height: 100%;
 	}
 
 	.seven , .eight , .nine{
