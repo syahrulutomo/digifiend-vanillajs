@@ -588,7 +588,30 @@ header{
 	}	
 }
 
+.about{
+	margin-top: 100px;
+}
 
+.button-wrapper{
+    width: 35%;
+    margin-left: 43%;
+    margin-right: auto;
+    margin-bottom: 1em;
+}
+
+.load-more{
+   	padding: 0.7em 0.5em;
+    background-color: #2b5797;
+    color: white;
+    font-family: 'Righteous', cursive;
+    font-size: 1em;
+    border: 2px inset #eff4ff;
+    border-radius: 6px;
+}
+
+.load-more:hover{
+   	cursor: pointer;
+}
 
 footer{
 	width: 100%;

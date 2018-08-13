@@ -26,4 +26,10 @@ fetch(API.getGameIgn).then(function(response){
 	
 });
 
+var btn = document.querySelector('#load-gaming');
+
+// define lexical var for callback param (using closure)
+var parent = '#gaming-section';
+var category = 'gaming';
+btn.addEventListener('click',addArticles(parent,category));
 
