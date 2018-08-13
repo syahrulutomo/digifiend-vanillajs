@@ -461,10 +461,10 @@ header{
 		margin: 1em 1em;
 	}
 	#grid5{
-		margin-bottom: 1em;
+		margin-bottom: 0.5em;
 	}
 	#grid6{
-
+		margin-bottom: 0.5em;
 	}
 	#grid7{
 		margin-right: 1em;
@@ -491,10 +491,11 @@ header{
 		height: 50vh;
 	}
 	#grid5 .grid-thumbnail{
-		height: 70vh;
+		height: 65vh;
 	}
 	#grid6 .grid-thumbnail{
-		height: 80vh;
+		height: 50vh;
+		max-height: 60vh;
 	}
 	#grid7 .grid-thumbnail{
 		height: 40vh;
