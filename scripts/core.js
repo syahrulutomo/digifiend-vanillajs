@@ -23,12 +23,12 @@ main.addEventListener('click', function() {
 // List of API sources
 var API = {
 	getHeadline: 'https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=6b0a8ee04320420cae2ba7e7e1d5c55d',
-	getGameIgn: 'https://newsapi.org/v2/top-headlines?sources=ign&apiKey=6b0a8ee04320420cae2ba7e7e1d5c55d',
-	getGamePolygon: 'https://newsapi.org/v2/top-headlines?sources=polygon&apiKey=6b0a8ee04320420cae2ba7e7e1d5c55d',
-	getDevHackNews: 'https://newsapi.org/v2/top-headlines?sources=hacker-news&apiKey=6b0a8ee04320420cae2ba7e7e1d5c55d',
-	getDevTheNextWeb: 'https://newsapi.org/v2/top-headlines?sources=the-next-web&apiKey=6b0a8ee04320420cae2ba7e7e1d5c55d',
-	getNewsEngadget: 'https://newsapi.org/v2/top-headlines?sources=engadget&apiKey=6b0a8ee04320420cae2ba7e7e1d5c55d',
-	getNewsTechcrunch: 'https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=6b0a8ee04320420cae2ba7e7e1d5c55d'
+	getGameIgn: 'https://newsapi.org/v2/everything?sources=ign&apiKey=6b0a8ee04320420cae2ba7e7e1d5c55d',
+	getGamePolygon: 'https://newsapi.org/v2/everything?sources=polygon&apiKey=6b0a8ee04320420cae2ba7e7e1d5c55d',
+	getDevHackNews: 'https://newsapi.org/v2/everything?sources=hacker-news&apiKey=6b0a8ee04320420cae2ba7e7e1d5c55d',
+	getDevTheNextWeb: 'https://newsapi.org/v2/everything?sources=the-next-web&apiKey=6b0a8ee04320420cae2ba7e7e1d5c55d',
+	getNewsEngadget: 'https://newsapi.org/v2/everything?sources=engadget&apiKey=6b0a8ee04320420cae2ba7e7e1d5c55d',
+	getNewsTechcrunch: 'https://newsapi.org/v2/everything?sources=techcrunch&apiKey=6b0a8ee04320420cae2ba7e7e1d5c55d'
 }
 
 
@@ -93,6 +93,41 @@ function displayData(data,index,parent){
 		date.textContent = formattedDate;
 }
 
+function displayDataNew(data,index,parent){
+	
+	var thumbnailLink = document.querySelector(parent).firstChild.firstChild;
+	var titleLink = document.querySelector(parent).firstChild.nextSibling.firstChild;
+	var thumbnail = document.querySelector(parent).firstChild.firstChild.firstChild;
+	var title = document.querySelector(parent).firstChild.nextSibling.firstChild.firstChild;
+	var summary = document.querySelector(parent).firstChild.nextSibling.firstChild.nextSibling;
+	var author = document.querySelector(parent).firstChild.nextSibling.firstChild.nextSibling.nextSibling.firstChild.firstChild.nextSibling;
+	var date = document.querySelector(parent).firstChild.nextSibling.firstChild.nextSibling.nextSibling.firstChild.firstChild.nextSibling.nextSibling.nextSibling;
+		
+	if(data['articles'][index]['urlToImage'] != null){
+		thumbnailLink.href = data['articles'][index]['url'];
+		thumbnail.src = data['articles'][index]['urlToImage'];
+	}else{
+		thumbnailLink.href = data['articles'][index]['url'];
+		thumbnail.src = 'images/grey.jpg';
+	}
+		
+		titleLink.href = data['articles'][index]['url'];
+		title.textContent = data['articles'][index]['title'];
+		summary.textContent = data['articles'][index]['description'];
+		author.textContent = data['articles'][index]['source']['name'];
+		var date_temp = data['articles'][index]['publishedAt'];
+
+		date_temp = date_temp.slice(0,10);
+		var dateYear = date_temp.slice(0,4);
+		var dateMonth = date_temp.slice(5,7);
+		var dateDay = date_temp.slice(8);
+
+		dateMonth = formatMonth(dateMonth);
+
+		var formattedDate = dateDay+' '+dateMonth+' '+dateYear;
+		date.textContent = formattedDate;
+	}
+
 // custom format date 
 function formatMonth(month){
 	var formattedMonth;
@@ -126,6 +161,7 @@ function formatMonth(month){
 	return formattedMonth;
 }
 
+var	counter = 0;
 /*
  * Add new element into recent news section
  * and callback for button.onclick event
@@ -183,20 +219,21 @@ function addArticles(parent,category){
 		right.setAttribute('class','recent-news-right');
 
 		var titleLink =  document.createElement('a');
-		// titleLink.setAttribute('class','recent-news-content');
-		titleLink.setAttribute('class','recent-news-link');
+		titleLink.setAttribute('class','recent-news-content');
+		titleLink.classList.add('recent-news-link');
 		titleLink.setAttribute('href','');
 
 		var title = document.createElement('h3');
 		title.setAttribute('class','recent-news-title');
+		title.textContent = 'Gastropub distillery Marfa farm-to-table';
 		titleLink.appendChild(title);
 
 		var summary = document.createElement('p');
 		summary.setAttribute('class','recent-news-content');
-		summary.setAttribute('class','recent-news-summary');
+		summary.classList.add('recent-news-summary');
 
 		var articleAuthor = document.createElement('div');
-		articleAuthor.setAttribute('class','articleAuthor');
+		articleAuthor.setAttribute('class','article-author');
 
 		var pAuthor = document.createElement('p');
 		pAuthor.setAttribute('class','recent-news-content');
@@ -214,34 +251,277 @@ function addArticles(parent,category){
 
 		parentElement.appendChild(article);
 
-	}
+  	}
+
+  	counter = counter +1;
 
 	if(category=='gaming'){
+
+		var startUrl = 0;
+		var startEle = 0;
+
+		if(counter == 1){
+			startUrl = 5;
+			startEle = 11;
+		}else if(counter == 2){
+			startUrl = 10;
+			startEle = 21;
+		}else if(counter == 3){
+			startUrl = 15;
+			startEle = 31;
+		}
+
 
 			fetch(API.getGamePolygon).then(function(response){
 				return response.json();
 			})
 			.then(function(json){
-				displayData(json,5,'#recent-news-gaming11');
-				displayData(json,6,'#recent-news-gaming13');
-				displayData(json,7,'#recent-news-gaming15');
-				displayData(json,8,'#recent-news-gaming17');
-				displayData(json,9,'#recent-news-gaming19');
+				displayDataNew(json,startUrl,'#recent-news-gaming'+startEle);
 				
+				startUrl = startUrl+1;
+				startEle = startEle+2;
+				displayDataNew(json,startUrl,'#recent-news-gaming'+startEle);
+
+				startUrl = startUrl+1;
+				startEle = startEle+2;
+				displayDataNew(json,startUrl,'#recent-news-gaming'+startEle);
+
+				startUrl = startUrl+1;
+				startEle = startEle+2;
+				displayDataNew(json,startUrl,'#recent-news-gaming'+startEle);
+				
+				startUrl = startUrl+1;
+				startEle = startEle+2;
+				displayDataNew(json,startUrl,'#recent-news-gaming'+startEle);
+		
+		
 			fetch(API.getGameIgn).then(function(response){
 				return response.json();
 			})
 			.then(function(json){
-				displayData(json,index,'#recent-news-gaming12');
-				displayData(json,index+1,'#recent-news-gaming14');
-				displayData(json,index+2,'#recent-news-gaming16');
-				displayData(json,index+3,'#recent-news-gaming18');
-				displayData(json,index+4,'#recent-news-gaming20');
+				var startUrl;
+				var startEle;
+
+				if(counter == 1){
+					startUrl = 5;
+					startEle = 11;
+				}else if(counter == 2){
+					startUrl = 10;
+					startEle = 21;
+				}else if(counter == 3){
+					startUrl = 15;
+					startEle = 31;
+				}
+			
+				startEle = startEle+1;
+				displayDataNew(json,startUrl,'#recent-news-gaming'+startEle);
+
+				startUrl = startUrl+1;
+				startEle = startEle+2;				
+				displayDataNew(json,startUrl,'#recent-news-gaming'+startEle);
+
+				startUrl = startUrl+1;
+				startEle = startEle+2;
+				displayDataNew(json,startUrl,'#recent-news-gaming'+startEle);
+
+				startUrl = startUrl+1;
+				startEle = startEle+2;
+				displayDataNew(json,startUrl,'#recent-news-gaming'+startEle);
+
+				startUrl = startUrl+1;
+				startEle = startEle+2;
+				displayDataNew(json,startUrl,'#recent-news-gaming'+startEle);
+
+				
+				var limit = startUrl + 1
+				if(json['articles'][limit] == undefined ){
+					document.querySelector('#load-gaming').remove();
+				}
+
 			});
 				
 			});
+
+
+		}else if(category=='news'){
+
+
+		var startUrl = 0;
+		var startEle = 0;
+
+		if(counter == 1){
+			startUrl = 5;
+			startEle = 11;
+		}else if(counter == 2){
+			startUrl = 10;
+			startEle = 21;
+		}else if(counter == 3){
+			startUrl = 15;
+			startEle = 31;
 		}
 
-  }
+			fetch(API.getNewsTechcrunch).then(function(response){
+				return response.json();
+			})
+			.then(function(json){
+				displayDataNew(json,startUrl,'#recent-news-news'+startEle);
+				
+				startUrl = startUrl+1;
+				startEle = startEle+2;
+				displayDataNew(json,startUrl,'#recent-news-news'+startEle);
+
+				startUrl = startUrl+1;
+				startEle = startEle+2;
+				displayDataNew(json,startUrl,'#recent-news-news'+startEle);
+
+				startUrl = startUrl+1;
+				startEle = startEle+2;
+				displayDataNew(json,startUrl,'#recent-news-news'+startEle);
+				
+				startUrl = startUrl+1;
+				startEle = startEle+2;
+				displayDataNew(json,startUrl,'#recent-news-news'+startEle);
+		
+		
+			fetch(API.getNewsEngadget).then(function(response){
+				return response.json();
+			})
+			.then(function(json){
+				var startUrl;
+				var startEle;
+
+				if(counter == 1){
+					startUrl = 5;
+					startEle = 11;
+				}else if(counter == 2){
+					startUrl = 10;
+					startEle = 21;
+				}else if(counter == 3){
+					startUrl = 15;
+					startEle = 31;
+				}
+			
+				startEle = startEle+1;
+				displayDataNew(json,startUrl,'#recent-news-news'+startEle);
+
+				startUrl = startUrl+1;
+				startEle = startEle+2;				
+				displayDataNew(json,startUrl,'#recent-news-news'+startEle);
+
+				startUrl = startUrl+1;
+				startEle = startEle+2;
+				displayDataNew(json,startUrl,'#recent-news-news'+startEle);
+
+				startUrl = startUrl+1;
+				startEle = startEle+2;
+				displayDataNew(json,startUrl,'#recent-news-news'+startEle);
+
+				startUrl = startUrl+1;
+				startEle = startEle+2;
+				displayDataNew(json,startUrl,'#recent-news-news'+startEle);
+
+				
+				var limit = startUrl + 1
+				if(json['articles'][limit] == undefined ){
+					document.querySelector('#load-news').remove();
+				}
+
+			});
+				
+			});
+
+
+		}else if(category=='dev'){
+
+		var startUrl = 0;
+		var startEle = 0;
+
+		if(counter == 1){
+			startUrl = 5;
+			startEle = 11;
+		}else if(counter == 2){
+			startUrl = 10;
+			startEle = 21;
+		}else if(counter == 3){
+			startUrl = 15;
+			startEle = 31;
+		}
+
+
+			fetch(API.getDevTheNextWeb).then(function(response){
+				return response.json();
+			})
+			.then(function(json){
+				displayDataNew(json,startUrl,'#recent-news-dev'+startEle);
+				
+				startUrl = startUrl+1;
+				startEle = startEle+2;
+				displayDataNew(json,startUrl,'#recent-news-dev'+startEle);
+
+				startUrl = startUrl+1;
+				startEle = startEle+2;
+				displayDataNew(json,startUrl,'#recent-news-dev'+startEle);
+
+				startUrl = startUrl+1;
+				startEle = startEle+2;
+				displayDataNew(json,startUrl,'#recent-news-dev'+startEle);
+				
+				startUrl = startUrl+1;
+				startEle = startEle+2;
+				displayDataNew(json,startUrl,'#recent-news-dev'+startEle);
+		
+		
+			fetch(API.getDevHackNews).then(function(response){
+				return response.json();
+			})
+			.then(function(json){
+				var startUrl;
+				var startEle;
+
+				if(counter == 1){
+					startUrl = 5;
+					startEle = 11;
+				}else if(counter == 2){
+					startUrl = 10;
+					startEle = 21;
+				}else if(counter == 3){
+					startUrl = 15;
+					startEle = 31;
+				}
+			
+				startEle = startEle+1;
+				displayDataNew(json,startUrl,'#recent-news-dev'+startEle);
+
+				startUrl = startUrl+1;
+				startEle = startEle+2;				
+				displayDataNew(json,startUrl,'#recent-news-dev'+startEle);
+
+				startUrl = startUrl+1;
+				startEle = startEle+2;
+				displayDataNew(json,startUrl,'#recent-news-dev'+startEle);
+
+				startUrl = startUrl+1;
+				startEle = startEle+2;
+				displayDataNew(json,startUrl,'#recent-news-dev'+startEle);
+
+				startUrl = startUrl+1;
+				startEle = startEle+2;
+				displayDataNew(json,startUrl,'#recent-news-dev'+startEle);
+
+				
+				var limit = startUrl + 1
+				if(json['articles'][limit] == undefined ){
+					document.querySelector('#load-dev').remove();
+				}
+
+			});
+				
+			});
+
+
+		}
+
+
+ } 
 }
 

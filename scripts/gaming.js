@@ -7,11 +7,11 @@ fetch(API.getGameIgn).then(function(response){
 })
 .then(function(json){
 	displayData(json,0,'.headline-gaming');
-	displayData(json,1,'#recent-news-gaming2');
-	displayData(json,2,'#recent-news-gaming4');
-	displayData(json,3,'#recent-news-gaming6');
-	displayData(json,4,'#recent-news-gaming8');
-	displayData(json,5,'#recent-news-gaming10');
+	displayData(json,0,'#recent-news-gaming2');
+	displayData(json,1,'#recent-news-gaming4');
+	displayData(json,2,'#recent-news-gaming6');
+	displayData(json,3,'#recent-news-gaming8');
+	displayData(json,4,'#recent-news-gaming10');
 	
 	fetch(API.getGamePolygon).then(function(response){
 		return response.json();

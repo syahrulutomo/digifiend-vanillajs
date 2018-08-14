@@ -26,4 +26,10 @@ fetch(API.getDevHackNews).then(function(response){
 	
 });
 
-// addArticles('#dev-section','dev');
+var btn = document.querySelector('#load-dev');
+
+// define lexical var for callback param (using closure)
+var parent = '#dev-section';
+var category = 'dev';
+btn.addEventListener('click',addArticles(parent,category));
+
